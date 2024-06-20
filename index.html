@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Date Invitation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background-color: #f0f0f0;
+    }
+    h2 {
+      margin-bottom: 20px;
+    }
+    button {
+      font-size: 16px;
+      padding: 10px 20px;
+      margin: 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    #yesButton {
+      font-size: 24px; /* Initial font size */
+      background-color: #4CAF50; /* Green */
+      color: white;
+      border: none;
+    }
+    #yesButton:hover {
+      transform: scale(1.1);
+    }
+    #response {
+      margin-top: 20px;
+    }
+    #dateImage {
+      display: none; /* Initially hide the image */
+      max-width: 100%; /* Ensure image fits within container */
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h2>Would you go out on a date with me?</h2>
+    <button id="yesButton" onclick="showDateMessage()">Yes</button>
+    <button onclick="showNoResponse()">No</button>
+    <div id="response"></div>
+    <img id="dateImage" src="me.jpeg" alt="Date Image">
+  </div>
+
+  <script>
+    var noResponses = [
+      "This wasn't an option.",
+      "You really think I'd let you click no?",
+      "आपकी सुंदर आँखें मुझे द्रवित कर देती हैं",
+      "I have no clue if that was translated right.",
+      "You got no other option lol.",
+      "Now I might have to practice dark magic.",
+      "I'll buy you ice creams.",
+      "Click yes, so I can already start sending you couple goals reels.",
+      "You got no other option."
+    ];
+
+    var currentIndex = 0; // Current index in noResponses array
+
+    function showNoResponse() {
+      var responseElement = document.getElementById('response');
+      responseElement.innerHTML = noResponses[currentIndex];
+      currentIndex = (currentIndex + 1) % noResponses.length; // Move to next response in a loop
+
+      enlargeYes(); // Call function to enlarge Yes button when No is clicked
+    }
+
+    function showDateMessage() {
+      var responseElement = document.getElementById('response');
+      responseElement.innerHTML = "I can't wait for our date.";
+
+      var dateImage = document.getElementById('dateImage');
+      dateImage.style.display = 'block'; // Show the date image
+    }
+
+    function enlargeYes() {
+      var yesButton = document.getElementById('yesButton');
+      var currentFontSize = parseFloat(window.getComputedStyle(yesButton, null).getPropertyValue('font-size'));
+      yesButton.style.fontSize = (currentFontSize + 10) + 'px'; // Increase font size by 10px on each click
+    }
+  </script>
+</body>
+</html>
